@@ -1,0 +1,39 @@
+div#head, div#filter{
+    text-align: center;
+    border: grey 2px solid;
+    margin-top: 0.25%;
+}
+#head{
+    margin-top: 0.25%;
+}
+#myBody>div {
+    width: 100vw;
+}
+section{
+    flex: 1 1 20%;
+}
+section:first-of-type{
+    border-right: 1px solid grey;
+}
+
+#jobNotificationSuccess, #sollicitateNotComplete{
+    display: none;
+}
+
+#filterSelect {
+    margin: 6px;
+}
+
+#jobContainer{
+    border: 2px solid grey;
+    margin-top: 0.35%;
+    overflow: scroll;
+}
+#imageId2{
+    background-image: url('/assets/img/300x300.png');
+    width: 30%;
+}
+
+.jobAd{
+    border-bottom: 1px solid grey;
+}

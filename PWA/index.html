@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PWA</title>
+    <meta name="description" content="TI-S2-G2">
+    <meta name="author" content="Jonathan Van Nieuwenhove">
+    <!--<link rel="stylesheet" type="text/css" href="assets/css/reset.css">-->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<!-- Button trigger modal -->
+<!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#sollicitateModal">-->
+    <!--Launch demo modal-->
+<!--</button>-->
+<div id="jobNotificationSuccess" class="alert alert-success" role="alert">
+    Oops! Notification not showing correct info!
+</div>
+
+<!-- Modal For clicking on job-->
+<div class="modal fade" id="jobModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel"><span id="modalFunction"></span> </h3><h6>&nbsp  &#8364 <span id="modalWage"></span> / u</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            <div>
+                by <h4 id="modalCompany" class="pl-2">loading company details...</h4>
+            </div>
+            </div>
+            <div class="modal-body">
+                <p id="modalPeriod"></p>
+            </div>
+            <div class="modal-body">
+                <p>Beschrijving</p>
+                <p id="modalDescription">loading...</p>
+            </div>
+            <div class="modal-body">
+                <p>Gezocht Profiel</p>
+                <p id="modalWantedProfile">loading...</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="modalCloseButton">Close</button>
+                <button type="button" class="btn btn-primary btnSollicitate" data-toggle="modal" data-target="#sollicitateModal" >Sollicitate</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal For clicking on sollicitate-->
+<div class="modal fade" id="sollicitateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="sollicitateModalLabel">Fill in personal details:</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group row">
+                        <label for="applicant-lastname" class="col-form-label w-50">Lastname name:</label>
+                        <label for="applicant-name" class="col-form-label w-50">First name:</label>
+                        <input required type="text" placeholder="Last name" class="form-control col-md-6 w-50" id="applicant-lastname">
+                        <input required type="text" placeholder="First name" class="form-control col-md-6 w-50" id="applicant-name">
+                    </div>
+                    <div class="form-group row">
+                        <label for="applicant-birthdate" class="col-form-label w-25 col-md-3">Birthdate:</label>
+                        <input type="date" placeholder="Last name" class="form-control  col-md-3 w-25" id="applicant-birthdate">
+                        <label for="applicant-gender" class="col-form-label col-md-3 w-25">Gender:</label>
+                        <select id="applicant-gender" class="form-control col-md-3 w-25">
+                            <option value="F">Female</option>
+                            <option value="M">Man</option>
+                        </select>
+                        <label for="applicant-email" class="col-form-label w-25 col-md-3">E-mail:</label>
+                        <input required type="email" placeholder="address@email.com" class="form-control col-md-9 w-75" id="applicant-email">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-header">
+                <h6 class="modal-title" id="locationModalLabel">Location details:</h6>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group row">
+                        <label for="applicant-town" class="col-form-label w-50">Town:</label>
+                        <label for="applicant-postal" class="col-form-label w-50">Postal code:</label>
+                        <input required type="text" placeholder="Ex. Brugge" class="form-control col-md-6 w-50" id="applicant-town">
+                        <input required type="text" placeholder="Ex. 8000" class="form-control col-md-6 w-50" id="applicant-postal">
+                    </div>
+                    <div class="form-group row">
+                        <label for="applicant-street" class="col-form-label w-25 col-md-3">Street:</label>
+                        <input required type="text" placeholder="Street" class="form-control  col-md-3 w-25" id="applicant-street">
+                        <label for="applicant-housenr" class="col-form-label col-md-3 w-25">House nr:</label>
+                        <input required type="text" maxlength="10" placeholder="House Number" class="form-control  col-md-3 w-25" id="applicant-housenr">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-header">
+                <h6 class="modal-title" id="financialModalLabel">Financial details:</h6>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group row">
+                        <label for="applicant-bankname" class="col-form-label w-50">Bankname:</label>
+                        <label for="applicant-accountNumber" class="col-form-label w-50">Account number:</label>
+                        <input required type="text" placeholder="Name of bank" class="form-control col-md-6 w-50" id="applicant-bankname">
+                        <input required type="text" placeholder="Number of account" maxlength="16" class="form-control col-md-6 w-50" id="applicant-accountNumber">
+                        <label for="applicant-nameOnAccount" class="col-form-label col-md-3 w-25">Name on account:</label>
+                        <input required type="text" placeholder="Name on account" class="form-control  col-md-9 w-75" id="applicant-nameOnAccount">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary modalSendToCompany">Send to company</button>
+            </div>
+            <div id="sollicitateNotComplete" class="alert alert-danger" role="alert">
+                Oops! Seems like you forgot to enter some info!
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="myBody">
+<div id="mainContainer" class="container" style="height: 100vh;">
+    <div class="container h-10" id="head">
+        <h1 class="text-center">FIND JOBS</h1>
+    </div>
+    <div class="container h-75 d-flex flex-column bd-highlight mb-3" id="jobContainer">
+        <span id="loading">loading jobs...</span>
+    </div>
+
+</div>
+</div>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.0.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.js" type="text/javascript"></script>
+<script src="assets/script.js" rel="script" type="text/javascript"></script>
+</body>
+</html>
