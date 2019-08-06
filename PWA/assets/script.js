@@ -5,14 +5,37 @@ document.addEventListener("DOMContentLoaded", init);
 function init(){
     console.log("application is ready for use.");
     // fetchAPI();
+    registerServiceWorker();
+    console.log("ran line");
     fetchAllOpenJobs();
+
     $('#jobModal').on('shown.bs.modal', function () {
         $('#jobModal').trigger('focus')
     });
+
     $('#sollicitateModal').on('shown.bs.modal', function () {
         $('#sollicitateModal').trigger('focus')
     });
+
     document.querySelector("#modalCloseButton").addEventListener("click", resetModal);
+}
+
+function registerServiceWorker(){
+    // check whether service workers are supported
+    setTimeout(function () { //Timeout to make sure everything is loaded correctly.
+        console.log("checking for sw");
+        if('serviceWorker' in navigator){ //navigator = holds browser information
+            navigator.serviceWorker.register("sw.js").then(function (res) { //in root because of origin!!
+                console.log("Successfully registered service worker with scope:",
+                    res.scope);
+            }).catch(function (err) {
+                console.log("Error registering service worker: ", err);
+            })
+        } else {
+            console.log('sw not supported');
+        }
+
+    }, 10000)
 }
 
 function resetModal(){
@@ -224,4 +247,26 @@ function addEventlistenersOnButtons(){
     for (let i=0; i<buttons.length; i++){
         buttons[i].addEventListener("click", getJob);
     }
+    updateIndexHere(); //This updates the index html because it contains now the jobs!!
+    console.log("called previous function");
+}
+
+const CACHE_NAME = "pwa-jobit-cache-v1";
+
+//TODO: dit maken zodat als ik deze functie roep in de console, die succesvol de file index.html savet naar de cache van de ws
+//Link om hiervoor te grbuiken: https://developers.google.com/web/ilt/pwa/caching-files-with-service-worker
+function updateIndex(){
+    // e.preventDefault();
+    console.log("updateIndex");
+    caches.open(CACHE_NAME).then(function(cache){
+        console.log("caches open");
+        fetch('index.html').then(function(response) {
+            console.log("fetched");
+            return response;
+        }).then(function (urls) {
+            cache.add(urls);
+            console.log("updated index.html");
+        });
+    });
+    console.log("done w f");
 }
