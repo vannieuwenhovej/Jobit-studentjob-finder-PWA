@@ -1,6 +1,6 @@
 # PWA
 
-The Progressive Web App offers jobs created by companies to the students. As a student you see the different jobs on the home page. You can apply for these jobs and and will be notified if you're accepted for one.
+The Progressive Web App offers jobs created by companies to the students. As a student you see the different jobs on the home page. You can apply for these jobs and will be notified if you're accepted for one.
 
 
 # 1 Technichal Features
